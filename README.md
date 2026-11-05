@@ -12,7 +12,7 @@
 
 ## Building
 
-### MACUAHUITL
+<h3><img src="assets/macuahuitl.svg" height="36" align="top" alt="MACUAHUITL logo">&nbsp; MACUAHUITL</h3>
 
 `Go` `gRPC` `SQLite` `Linux`
 
@@ -24,29 +24,29 @@ A 100% local, TAC-grade desktop platform for multivendor network operations.
 
 <br>
 
-### AI Network Troubleshooting Agent
+<h3><img src="assets/zylant-os.png" height="36" align="top" alt="Zylant-OS logo, Xolotl">&nbsp; Zylant-OS</h3>
 
-`LLM` `AIOps` `Private`
+`Ubuntu 26.04 LTS` `Bash` `GNOME` `ISO`
 
-An agent skill that runs layer-by-layer root-cause analysis.
+My own Linux distribution: Ubuntu 26.04 LTS rebuilt with Tokyo Night style, Xolotl branding and a development environment ready from the first boot.
 
-- Knowledge base from CCNA to CCDE
-- Multivendor: Cisco, Juniper, Arista, Fortinet, Palo Alto
-- Writes executive and technical RCA reports with operational metrics
+- Bootable ISO built from the official Ubuntu image, with its own installer and full branding (boot animation, GRUB, login)
+- Hardened out of the box: firewall, fingerprint `sudo`, automatic Timeshift snapshots, telemetry removed
+- Dev-ready: Ghostty, Docker, uv, Node LTS, VS Code and a tuned GNOME, all scripted and repeatable
 
 <br>
 
 ## Stack
 
 <p>
-  <img src="https://img.shields.io/badge/Cisco-0B0F0C?style=for-the-badge&logo=cisco&logoColor=00FF41" alt="Cisco">
-  <img src="https://img.shields.io/badge/Go-0B0F0C?style=for-the-badge&logo=go&logoColor=00FF41" alt="Go">
-  <img src="https://img.shields.io/badge/Python-0B0F0C?style=for-the-badge&logo=python&logoColor=00FF41" alt="Python">
-  <img src="https://img.shields.io/badge/Ansible-0B0F0C?style=for-the-badge&logo=ansible&logoColor=00FF41" alt="Ansible">
-  <img src="https://img.shields.io/badge/gRPC-0B0F0C?style=for-the-badge&logo=google&logoColor=00FF41" alt="gRPC">
-  <img src="https://img.shields.io/badge/SQLite-0B0F0C?style=for-the-badge&logo=sqlite&logoColor=00FF41" alt="SQLite">
-  <img src="https://img.shields.io/badge/Wireshark-0B0F0C?style=for-the-badge&logo=wireshark&logoColor=00FF41" alt="Wireshark">
-  <img src="https://img.shields.io/badge/Linux-0B0F0C?style=for-the-badge&logo=linux&logoColor=00FF41" alt="Linux">
+  <img src="assets/badges/cisco.svg" alt="Cisco">
+  <img src="assets/badges/go.svg" alt="Go">
+  <img src="assets/badges/python.svg" alt="Python">
+  <img src="assets/badges/ansible.svg" alt="Ansible">
+  <img src="assets/badges/sqlite.svg" alt="SQLite">
+  <img src="assets/badges/wireshark.svg" alt="Wireshark">
+  <img src="assets/badges/linux.svg" alt="Linux">
+  <img src="assets/badges/ubuntu.svg" alt="Ubuntu">
 </p>
 
 <table>
@@ -59,15 +59,15 @@ An agent skill that runs layer-by-layer root-cause analysis.
 ## Certifications
 
 <p>
-  <img src="https://img.shields.io/badge/CCIE-Enterprise%20Wireless%20%2368143-1A5C2E?style=for-the-badge&labelColor=0B0F0C" alt="CCIE Enterprise Wireless #68143">
-  <img src="https://img.shields.io/badge/CCNP-Enterprise-1A5C2E?style=for-the-badge&labelColor=0B0F0C" alt="CCNP Enterprise">
-  <img src="https://img.shields.io/badge/Cisco-SCOR-1A5C2E?style=for-the-badge&labelColor=0B0F0C" alt="Cisco Security Core (SCOR)">
-  <img src="https://img.shields.io/badge/Cisco-ENCOR-1A5C2E?style=for-the-badge&labelColor=0B0F0C" alt="Cisco Enterprise Core (ENCOR)">
-  <img src="https://img.shields.io/badge/CCNA-Cisco-1A5C2E?style=for-the-badge&labelColor=0B0F0C" alt="CCNA">
+  <img src="assets/badges/cert-1.svg" alt="CCIE Enterprise Wireless #68143">
+  <img src="assets/badges/cert-2.svg" alt="CCNP Enterprise">
+  <img src="assets/badges/cert-3.svg" alt="Cisco Security Core (SCOR)">
+  <img src="assets/badges/cert-4.svg" alt="Cisco Enterprise Core (ENCOR)">
+  <img src="assets/badges/cert-5.svg" alt="CCNA">
 </p>
 
 ## Contact
 
-<a href="mailto:osvaldo.ordonez@yahoo.com.mx"><img src="https://img.shields.io/badge/osvaldo.ordonez%40yahoo.com.mx-0B0F0C?style=for-the-badge&logo=maildotru&logoColor=00FF41" alt="Email osvaldo.ordonez@yahoo.com.mx"></a>
+<a href="mailto:osvaldo.ordonez@yahoo.com.mx"><img src="assets/badges/email.svg" alt="Email osvaldo.ordonez@yahoo.com.mx"></a>
 
 <sub>Mexico · English / Español · Open to conversations about network automation, wireless and AIOps.</sub>
