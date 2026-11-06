@@ -1,4 +1,4 @@
-<h1 align="center">Osvaldo Ordonez Milan</h1>
+<h1 align="center">Os Ordonez</h1>
 
 <p align="center">
   Network Operations Lead &nbsp;·&nbsp; CCIE Enterprise Wireless #68143 &nbsp;·&nbsp; Network automation &amp; AI tooling
