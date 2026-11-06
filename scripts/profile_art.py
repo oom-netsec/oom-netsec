@@ -45,7 +45,7 @@ GLYPHS = {
 # ---------- data ----------
 
 QUERY = """query($login: String!) { user(login: $login) { createdAt
-  contributionsCollection { totalCommitContributions
+  contributionsCollection {
     contributionCalendar { totalContributions weeks { contributionDays { date contributionCount contributionLevel } } } } } }"""
 
 
@@ -215,7 +215,7 @@ def stats(user):
     rows = [("Handle", f"@{USER}"), ("Role", "Network Operations Lead · VP"),
             ("Certification", "CCIE Enterprise Wireless #68143"),
             ("Contributions", f"{cc['contributionCalendar']['totalContributions']:,} in the last year"),
-            ("Commits", f"{cc['totalCommitContributions']:,}"),
+            ("Active days", f"{sum(1 for d in days if d['contributionCount'])} in the last year"),
             ("Current streak", f"{cur} day{'s' * (cur != 1)}"), ("Longest streak", f"{longest} day{'s' * (longest != 1)}"),
             ("Busiest day", f"{best['contributionCount']} on {dt.date.fromisoformat(best['date']):%d %b %Y}"),
             ("Building", "MACUAHUITL · Zylant-OS"), ("On GitHub since", f"{since:%b %Y}")]
