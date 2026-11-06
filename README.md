@@ -1,7 +1,5 @@
-<h1 align="center">Os Ordonez</h1>
-
 <p align="center">
-  Network Operations Lead &nbsp;·&nbsp; CCIE Enterprise Wireless #68143 &nbsp;·&nbsp; Network automation &amp; AI tooling
+  <img src="assets/generated/banner.svg" alt="Os Ordonez · Network Operations Lead · CCIE Enterprise Wireless #68143 · Automation & AI" width="100%">
 </p>
 
 <p align="center">
@@ -33,6 +31,18 @@ My own Linux distribution: Ubuntu 26.04 LTS rebuilt with Tokyo Night style, Xolo
 - Bootable ISO built from the official Ubuntu image, with its own installer and full branding (boot animation, GRUB, login)
 - Hardened out of the box: firewall, fingerprint `sudo`, automatic Timeshift snapshots, telemetry removed
 - Dev-ready: Ghostty, Docker, uv, Node LTS, VS Code and a tuned GNOME, all scripted and repeatable
+
+<br>
+
+## Activity
+
+<p align="center">
+  <img src="assets/generated/contrib.svg" alt="Contribution activity for the last year" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/generated/stats.svg" alt="Profile scan: live GitHub stats" width="100%">
+</p>
 
 <br>
 
