@@ -3,7 +3,10 @@
 </p>
 
 <p align="center">
-  <img src="./terminal.svg" alt="oom-netsec# show running-config | section engineer" width="100%">
+  <picture>
+    <source media="(max-width: 700px)" srcset="assets/generated/scan-mobile.svg">
+    <img src="assets/generated/scan.svg" alt="Profile scan: Cisco, Xolotl, macuahuitl and Ubuntu logos next to a terminal running show running-config" width="100%">
+  </picture>
 </p>
 
 <br>
@@ -41,7 +44,7 @@ My own Linux distribution: Ubuntu 26.04 LTS rebuilt with Tokyo Night style, Xolo
 </p>
 
 <p align="center">
-  <img src="assets/generated/stats.svg" alt="Profile scan: live GitHub stats" width="100%">
+  <img src="assets/generated/stats.svg" alt="GitHub signal: live contribution stats" width="100%">
 </p>
 
 <br>

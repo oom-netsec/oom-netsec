@@ -3,7 +3,7 @@
 
   banner.svg   name in dot-matrix lights over code rain, with the MACUAHUITL and Xolotl logos
   contrib.svg  contribution graph; the Xolotl runs across once and eats it, then it grows back
-  stats.svg    "profile scan": the macuahuitl under a scan line next to live stats
+  stats.svg    "GitHub signal": live contribution stats as tiles
 
 Data comes from the GitHub GraphQL API (env GITHUB_TOKEN; locally: GITHUB_TOKEN=$(gh auth token)).
 Runs daily from .github/workflows/profile-art.yml. Usage: python3 scripts/profile_art.py
@@ -204,43 +204,35 @@ def contrib(user):
     return doc(h, body, f"Contribution activity: {cal['totalContributions']} contributions in the last year")
 
 
-# ---------- profile scan ----------
+# ---------- GitHub signal ----------
 
 def stats(user):
-    cc = user["contributionsCollection"]
-    days = [d for w in cc["contributionCalendar"]["weeks"] for d in w["contributionDays"]]
+    cal = user["contributionsCollection"]["contributionCalendar"]
+    days = [d for w in cal["weeks"] for d in w["contributionDays"]]
     cur, longest = streaks(days)
     best = max(days, key=lambda d: d["contributionCount"])
     since = dt.date.fromisoformat(user["createdAt"][:10])
-    rows = [("Handle", f"@{USER}"), ("Role", "Network Operations Lead · VP"),
-            ("Certification", "CCIE Enterprise Wireless #68143"),
-            ("Contributions", f"{cc['contributionCalendar']['totalContributions']:,} in the last year"),
-            ("Active days", f"{sum(1 for d in days if d['contributionCount'])} in the last year"),
-            ("Current streak", f"{cur} day{'s' * (cur != 1)}"), ("Longest streak", f"{longest} day{'s' * (longest != 1)}"),
-            ("Busiest day", f"{best['contributionCount']} on {dt.date.fromisoformat(best['date']):%d %b %Y}"),
-            ("Building", "MACUAHUITL · Zylant-OS"), ("On GitHub since", f"{since:%b %Y}")]
-    h = 330
-    px, py, pw, ph = 40, 60, 250, 240  # scan panel
-    scan = (f'<rect x="{px}" y="{py}" width="{pw}" height="{ph}" rx="10" fill="#050C07" stroke="#1C3B24"/>'
-            f'<g transform="translate({px + pw / 2 - 80} {py + ph / 2 - 80}) scale(2.5)" filter="url(#glow)" opacity="0.9">{MACUAHUITL.format(c=MID)}</g>'
-            f'<rect x="{px + 1}" y="{py}" width="{pw - 2}" height="26" fill="url(#beam)" opacity="0">'
-            f'<animate attributeName="opacity" values="1;1;0" keyTimes="0;0.99;1" begin="0.3s" dur="6.6s" fill="freeze"/>'
-            f'<animate attributeName="y" from="{py - 26}" to="{py + ph}" begin="0.3s" dur="2.2s" repeatCount="3"/></rect>'
-            f'<text x="{px + 14}" y="{py + ph - 14}" fill="{DIM}" font-family="{MONO}" font-size="10">VISUAL.SCAN · MACUAHUITL</text>')
-    tx, ty, tw = 320, 60, W - 320 - 40
-    table = [f'<rect x="{tx}" y="{ty}" width="{tw}" height="{ph}" rx="10" fill="#050C07" stroke="#1C3B24"/>']
-    for i, (k, v) in enumerate(rows):
-        y = ty + 30 + i * 21.5
+    plural = lambda n: f"day{'s' * (n != 1)}"
+    tiles = [("Contributions", f"{cal['totalContributions']:,}", "last year"),
+             ("Active days", f"{sum(1 for d in days if d['contributionCount'])}", "last year"),
+             ("Current streak", f"{cur}", plural(cur)),
+             ("Longest streak", f"{longest}", plural(longest)),
+             ("Busiest day", f"{best['contributionCount']}", f"{dt.date.fromisoformat(best['date']):%d %b %Y}"),
+             ("On GitHub since", f"{since:%b}", f"{since:%Y}")]
+    cols, gap, tw, th, top = 3, 16, (W - 80 - 2 * 16) / 3, 92, 58
+    out = []
+    for i, (label, value, sub) in enumerate(tiles):
+        x, y = 40 + i % cols * (tw + gap), top + i // cols * (th + gap)
         # A fade with fill="freeze" keeps its end state; a <set> on a <g> was dropped once the timeline went idle.
-        table.append(f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{0.6 + i * 0.18:.2f}s" dur="0.25s" fill="freeze"/>'
-                     f'<text x="{tx + 20}" y="{y}" fill="{DIM}" font-family="{MONO}" font-size="12">{escape(k)}</text>'
-                     f'<text x="{tx + 170}" y="{y}" fill="{INK if i else GREEN}" font-family="{MONO}" font-size="12">{escape(v)}</text></g>')
+        out.append(f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="{0.3 + i * 0.15:.2f}s" dur="0.3s" fill="freeze"/>'
+                   f'<rect x="{x:.1f}" y="{y}" width="{tw:.1f}" height="{th}" rx="10" fill="#050C07" stroke="#1C3B24"/>'
+                   f'<text x="{x + 18:.1f}" y="{y + 26}" fill="{DIM}" font-family="{SANS}" font-size="11" letter-spacing="1.6">{escape(label.upper())}</text>'
+                   f'<text x="{x + 18:.1f}" y="{y + 68}" fill="{GREEN}" font-family="{SANS}" font-size="32" font-weight="700">{escape(value)}'
+                   f'<tspan fill="{TEXT}" font-size="13" font-weight="400" dx="8">{escape(sub)}</tspan></text></g>')
     live = (f'<circle cx="{W - 92}" cy="31" r="4" fill="{GREEN}"><animate attributeName="opacity" values="1;0.25;1" dur="1.8s" repeatCount="indefinite"/></circle>'
             f'<text x="{W - 82}" y="35" fill="{DIM}" font-family="{MONO}" font-size="11">LIVE</text>')
-    body = heading(40, 36, "Profile scan") + live + scan + "".join(table)
-    beam = (f'<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{GREEN}" stop-opacity="0"/>'
-            f'<stop offset="0.85" stop-color="{GREEN}" stop-opacity="0.35"/><stop offset="1" stop-color="{GREEN}" stop-opacity="0.9"/></linearGradient>')
-    return doc(h, body, "Profile scan: live GitHub stats for oom-netsec", beam)
+    h = top + 2 * th + gap + 34
+    return doc(h, heading(40, 36, "GitHub signal") + live + "".join(out), "GitHub signal: live contribution stats for oom-netsec")
 
 
 def main():
